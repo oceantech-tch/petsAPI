@@ -1,0 +1,102 @@
+openapi: 3.1.0
+info:
+  title: Pets API
+  version: 1.0.0
+  description: API for managing a pet store
+servers:
+  - url: http://localhost:4141
+    description: Local server
+
+components:
+  schemas:
+    Pet:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Pet ID
+        name:
+          type: string
+        age:
+          type: integer
+        type:
+          type: string
+        breed:
+          type: string
+      example:
+        id: 1
+        name: Rex
+        age: 3
+        type: dog
+        breed: labrador
+
+paths:
+  /pets:
+    get:
+      summary: Get all pets
+      tags: [Pets]
+      responses:
+        200:
+          description: A list of pets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pet'
+    post:
+      summary: Add a new pet
+      tags: [Pets]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+      responses:
+        201:
+          description: Created
+
+  /pets/{id}:
+    get:
+      summary: Get pet by ID
+      tags: [Pets]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+    put:
+      summary: Update a pet
+      tags: [Pets]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+      responses:
+        200:
+          description: Updated
+    delete:
+      summary: Delete a pet
+      tags: [Pets]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Deleted
