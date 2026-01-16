@@ -1,16 +1,51 @@
-# React + Vite
+#  Pet Shelter Full-Stack Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A comprehensive full-stack solution for managing pet shelter records. This project features a modular **React** frontend and a professionally structured **Node.js/Express** backend, utilizing a layered architecture and **Swagger (OpenAPI 3.1)** for interactive API documentation.
 
-Currently, two official plugins are available:
+## Project Architecture
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The project is built with a clear separation of concerns to mimic real-world production environments:
 
-## React Compiler
+* **Frontend (`/client`):** A modern React application that consumes the REST API to provide a seamless user experience for managing pet data.
+* **Backend (`/server`):** A robust Node.js API following a 5-layer architecture:
+    1.  **Application Layer:** Server initialization and middleware setup (`app.js`).
+    2.  **Routes Layer:** HTTP method and endpoint path definitions (`pets.routes.js`).
+    3.  **Controllers Layer:** Request validation and orchestration of data flow (`pets.controller.js`).
+    4.  **Model Layer:** Core business logic and data manipulation (`pets.models.js`).
+    5.  **Persistence Layer:** In-memory data storage (`db.js`).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+-   **Interactive Dashboard:** View, sort, and browse pets currently in the shelter.
+-   **Full CRUD Management:** Interface to add new pets, update existing records, and process adoptions (deletions).
+-   **Live API Docs:** Explore the API specification and test endpoints directly via the integrated Swagger UI.
+-   **Standardized Responses:** Consistent error handling and success status codes.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+| Frontend | Backend | Documentation |
+| :--- | :--- | :--- |
+| **React.js** | **Node.js** | **Swagger UI** |
+| CSS3 / Flexbox | **Express.js** | **OpenAPI 3.1 (YAML)** |
+| Fetch / Axios | **CORS** | **YAMLJS** |
+
+## 🔧 Installation & Setup
+
+### 1. Backend (Server)
+Navigate to the server directory and start the API:
+```bash
+cd server
+npm install
+npm start
+
+```
+### 2. Frontend (Client)
+In a new terminal, navigate to the client directory and start the React app:
+```bash
+cd client
+npm install
+npm run dev
+
+```
+## API Specification
+This project utilizes a Spec-First approach. The API is documented in a dedicated swagger.yaml file located in the server root. This ensure the doxumentation is clean, readable, and decoupled frrom the JavaScript logic.
